@@ -1,0 +1,88 @@
+.acf-label {
+  margin-bottom: 0 !important;
+}
+
+.acf-field .acf-input-wrap {
+  overflow: inherit;
+}
+
+.acf-field-repeater>.acf-label {
+  margin-bottom: 10px !important;
+}
+
+.acf-field .acf-label,
+.acf-table>thead>tr>th,
+.acf-fields.-left>.acf-field>.acf-label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.acf-field p.description {
+  font-weight: normal;
+}
+
+.acf-image-uploader {
+  max-width: 350px;
+}
+
+.acf-image-uploader .image-wrap img {
+  border: 1px solid #ddd;
+}
+
+.text_h_s textarea {
+  height: 100px !important;
+}
+
+.text_h_m textarea {
+  height: 200px !important;
+}
+
+.text_h_l textarea {
+  min-height: 500px !important;
+}
+
+.updated a,
+.preview.button,
+#wp-admin-bar-archive,
+.acf-relationship .list .acf-rel-item br,
+ul.category-tabs li.tabs,
+#se-top-global-notice,
+.categorydiv .hide-if-no-js,
+#updraft-dashnotice,
+#wp-admin-bar-root-default #wp-admin-bar-updates,
+#wp-admin-bar-root-default #wp-admin-bar-view,
+#wp-admin-bar-root-default #wp-admin-bar-new_draft,
+#wp-admin-bar-root-default #wp-admin-bar-updraft_admin_node,
+#screen-meta-links #contextual-help-link-wrap,
+#wp-admin-bar-user-actions #wp-admin-bar-edit-profile,
+#wp-admin-bar-user-actions #wp-admin-bar-user-info,
+.media-attachments-filter-heading,
+.exactmetrics-widget-report-element.exactmetrics-widget-report-toppages,
+.exactmetrics-widget-report-element.exactmetrics-widget-report-newvsreturn,
+.exactmetrics-widget-report-element.exactmetrics-widget-report-devices {
+  display: none !important;
+}
+
+.post-type-column #postdivrich,
+.post-type-news #postdivrich,
+.post-type-project #postdivrich,
+.wp-editor-tools,
+input[value="i"],
+input[value="quote"],
+input[value="del"],
+input[value="ins"],
+input[value="img"],
+input[value="ul"],
+input[value="ol"],
+input[value="li"],
+input[value="b-quote"],
+input[value="code"],
+input[value="more"],
+input[value="タグを閉じる"],
+#post-status-info {
+  display: none !important;
+}
+
+.wp-editor-container textarea.wp-editor-area {
+  padding: 1em;
+}
