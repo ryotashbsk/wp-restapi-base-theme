@@ -18,12 +18,11 @@ const INC_PATH = 'inc/';
 
 
 // Set admin menu label.
-const ADMIN_POST_MENU_LABEL = 'NEWS';
-const ADMIN_PAGE_MENU_LABEL = 'PAGE';
+const ADMIN_POST_MENU_LABEL = 'お知らせ';
+const ADMIN_PAGE_MENU_LABEL = 'ページ';
 
 
 // Set custom post type.
 const CUSTOM_POST_TYPE = [
-  ['type' => 'app', 'label' => 'APP (5月リリース)'],
-  ['type' => 'sensor', 'label' => 'SENSOR (5月リリース)'],
+  ['type' => 'test', 'label' => 'テスト'],
 ];
