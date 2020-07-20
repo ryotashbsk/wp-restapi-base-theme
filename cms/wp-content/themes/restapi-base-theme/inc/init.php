@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Variables
  */
@@ -10,13 +11,14 @@ $get_template_assets_dir = $get_template_dir . '/assets/';
 /**
  * Init
  */
-function init() {
+function init()
+{
 
   // Set auto update.
-  if(WP_CORE_AUTO_UPDATE !== false){
+  if (WP_CORE_AUTO_UPDATE !== false) {
     add_filter('allow_major_auto_core_updates', '__return_true');
   }
-  if(WP_PLUGIN_AUTO_UPDATE !== false){
+  if (WP_PLUGIN_AUTO_UPDATE !== false) {
     add_filter('auto_update_plugin', '__return_true');
   }
 
@@ -38,9 +40,9 @@ function init() {
   remove_action('wp_head', 'wp_shortlink_wp_head');
   remove_action('wp_head', 'print_emoji_detection_script', 7);
   remove_action('wp_print_styles', 'print_emoji_styles');
-  remove_action('wp_head','rest_output_link_wp_head');
-  remove_action('wp_head','wp_oembed_add_discovery_links');
-  remove_action('wp_head','wp_oembed_add_host_js');
+  remove_action('wp_head', 'rest_output_link_wp_head');
+  remove_action('wp_head', 'wp_oembed_add_discovery_links');
+  remove_action('wp_head', 'wp_oembed_add_host_js');
   remove_filter('pre_user_description', 'wp_filter_kses');
   remove_filter('the_content', 'wpautop');
 
@@ -57,8 +59,9 @@ function init() {
 
 
   // Disable dns prefetch.
-  function disable_dns_prefetch($hints, $relation_type) {
-    if('dns-prefetch' === $relation_type) {
+  function disable_dns_prefetch($hints, $relation_type)
+  {
+    if ('dns-prefetch' === $relation_type) {
       return array_diff(wp_dependencies_unique_hosts(), $hints);
     }
     return $hints;
@@ -67,7 +70,8 @@ function init() {
 
 
   // Disable pinback.
-  function disable_pingback($headers) {
+  function disable_pingback($headers)
+  {
     unset($headers['X-Pingback']);
     return $headers;
   }
@@ -75,15 +79,16 @@ function init() {
 
 
   // Disable author.
-  function disable_author_query(){
+  function disable_author_query()
+  {
     global $wp_rewrite;
     $wp_rewrite->flush_rules();
     $wp_rewrite->author_base = '';
     $wp_rewrite->author_structure = '/';
 
-    if(isset($_REQUEST['author']) && !empty($_REQUEST['author'])) {
+    if (isset($_REQUEST['author']) && !empty($_REQUEST['author'])) {
       $user_info = get_userdata(intval($_REQUEST['author']));
-      if($user_info && array_key_exists('administrator', $user_info->caps) && in_array('administrator', $user_info->roles)) {
+      if ($user_info && array_key_exists('administrator', $user_info->caps) && in_array('administrator', $user_info->roles)) {
         wp_redirect('/');
         exit;
       }
@@ -93,11 +98,13 @@ function init() {
 
 
   // Disable visual edotor.
-  function disable_visual_editor_mypost(){
-   add_filter('user_can_richedit', 'disable_visual_editor_filter');
+  function disable_visual_editor_mypost()
+  {
+    add_filter('user_can_richedit', 'disable_visual_editor_filter');
   }
   add_action('load-post.php', 'disable_visual_editor_mypost');
-  function disable_visual_editor_filter(){
+  function disable_visual_editor_filter()
+  {
     return false;
   }
   add_action('load-post-new.php', 'disable_visual_editor_mypost');
@@ -108,7 +115,8 @@ function init() {
 
 
   // Remove dashboard widget.
-  function remove_dashboard_widget() {
+  function remove_dashboard_widget()
+  {
     remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
     remove_meta_box('dashboard_right_now', 'dashboard', 'normal');
     remove_meta_box('dashboard_activity', 'dashboard', 'normal');
@@ -119,14 +127,16 @@ function init() {
 
 
   // Remove default message from admin footer.
-  function remove_admin_footer(){
-   echo '&nbsp;';
+  function remove_admin_footer()
+  {
+    echo '&nbsp;';
   }
   add_filter('admin_footer_text', 'remove_admin_footer');
 
 
   // Remove default admin bar menu.
-  function remove_admin_bar_menu($wp_admin_bar){
+  function remove_admin_bar_menu($wp_admin_bar)
+  {
     $wp_admin_bar->remove_node('wp-logo');
     $wp_admin_bar->remove_node('new-content');
     $wp_admin_bar->remove_node('comments');
@@ -136,7 +146,8 @@ function init() {
 
 
   // Remove default admin column from post list.
-  function remove_admin_post_column($columns){
+  function remove_admin_post_column($columns)
+  {
     unset($columns['author']);
     unset($columns['comments']);
     return $columns;
@@ -145,7 +156,8 @@ function init() {
 
 
   // Remove default admin column from page list.
-  function remove_admin_page_column($columns){
+  function remove_admin_page_column($columns)
+  {
     unset($columns['author']);
     unset($columns['comments']);
     return $columns;
@@ -154,8 +166,9 @@ function init() {
 
 
   // Remove default admin menu.
-  function remove_admin_menu() {
-    if (!current_user_can('administrator')){
+  function remove_admin_menu()
+  {
+    if (!current_user_can('administrator')) {
       // remove_menu_page('index.php');
       remove_menu_page('link-manager.php');
       remove_menu_page('themes.php');
@@ -165,7 +178,7 @@ function init() {
       remove_menu_page('users.php');
       remove_menu_page('plugins.php');
       remove_menu_page('options-general.php');
-    } else{
+    } else {
       // admin
     }
     remove_menu_page('edit-comments.php');
@@ -174,7 +187,8 @@ function init() {
 
 
   // Set login enque.
-  function set_login_enque(){
+  function set_login_enque()
+  {
     global $get_template_assets_dir;
     wp_enqueue_style('style', $get_template_assets_dir . 'css/login.css', [], time(), 'all');
   }
@@ -182,7 +196,8 @@ function init() {
 
 
   // Set admin enque.
-  function set_admin_enque(){
+  function set_admin_enque()
+  {
     global $get_template_assets_dir;
     wp_enqueue_style('style', $get_template_assets_dir . 'css/admin.css', [], time(), 'all');
     wp_enqueue_script('script', $get_template_assets_dir . 'js/admin.js', [], time(), true);

@@ -1,10 +1,13 @@
 <?php
+
 /**
  * Register custom post type.
  */
-function register_cpt($cpt, $label){
+function register_cpt($cpt, $label)
+{
   register_post_type(
-    $cpt, [
+    $cpt,
+    [
       'labels' => [
         'name' => __($label),
         'singular_name' => __($label),
@@ -24,8 +27,9 @@ function register_cpt($cpt, $label){
   );
 }
 
-function add_custom_post_type(){
-  foreach(CUSTOM_POST_TYPE as $data){
+function add_custom_post_type()
+{
+  foreach (CUSTOM_POST_TYPE as $data) {
     register_cpt($data['type'], $data['label']);
   }
 }
@@ -35,12 +39,13 @@ add_action('init', 'add_custom_post_type');
 /**
  * Change custom post order in admin.
  */
-function set_post_types_admin_order($wp_query){
-  if(is_admin()){
+function set_post_types_admin_order($wp_query)
+{
+  if (is_admin()) {
     $post_type = $wp_query->query['post_type'];
-    if($post_type == 'shop'){
-      $wp_query->set('orderby','date');
-      $wp_query->set('order','DESC');
+    if ($post_type == 'shop') {
+      $wp_query->set('orderby', 'date');
+      $wp_query->set('order', 'DESC');
     }
   }
 }
